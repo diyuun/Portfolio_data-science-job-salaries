@@ -66,4 +66,40 @@ GROUP BY
 ORDER BY 
     avg_salary_usd DESC;
 
+# 6 kenaikan gaji tertinggi dari level Mid-level (MI) ke Senior-level (SE)
+WITH salary_by_experience AS (
+    SELECT 
+        work_year,
+        experience_level,
+        AVG(salary_in_usd) AS avg_salary_usd
+    FROM 
+        `company.ds_salaries`
+    WHERE 
+        experience_level IN ('MI', 'SE')
+    GROUP BY 
+        work_year, experience_level
+),
 
+salary_difference AS (
+    SELECT 
+        a.work_year,
+        a.avg_salary_usd AS mid_level_salary,
+        b.avg_salary_usd AS senior_level_salary,
+        (b.avg_salary_usd - a.avg_salary_usd) AS salary_increase
+    FROM 
+        salary_by_experience a
+    JOIN 
+        salary_by_experience b 
+    ON 
+        a.work_year = b.work_year 
+        AND a.experience_level = 'MI' 
+        AND b.experience_level = 'SE'
+)
+
+SELECT 
+    work_year,
+    salary_increase
+FROM 
+    salary_difference
+ORDER BY 
+    salary_increase DESC;
