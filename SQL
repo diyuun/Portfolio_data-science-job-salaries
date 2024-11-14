@@ -54,4 +54,16 @@ GROUP BY
 ORDER BY 
     avg_salary_usd DESC;
 
+# 5 Interaksi Antara Lokasi Pekerja dan Lokasi Perusahaan
+SELECT 
+    employee_residence, 
+    company_location, 
+    AVG(salary_in_usd) AS avg_salary_usd
+FROM 
+    `company.ds_salaries`
+GROUP BY 
+    employee_residence, company_location
+ORDER BY 
+    avg_salary_usd DESC;
+
 
