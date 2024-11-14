@@ -28,3 +28,15 @@ WHERE
     job_title LIKE '%Data Analyst%'
 ORDER BY
     job_title
+
+# 3 Analisis Gaji Berdasarkan Tingkat Pengalaman
+SELECT 
+    experience_level, 
+    AVG(salary_in_usd) AS avg_salary_usd
+FROM 
+    `company.ds_salaries`
+GROUP BY 
+    experience_level
+ORDER BY 
+    avg_salary_usd DESC;
+
