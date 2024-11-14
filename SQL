@@ -43,3 +43,15 @@ GROUP BY
 ORDER BY 
     avg_salary_usd DESC;
 
+# 4 Perbandingan Gaji Berdasarkan Tipe Pekerjaan (Employment Type)
+SELECT 
+    employment_type, 
+    AVG(salary_in_usd) AS avg_salary_usd
+FROM 
+    `company.ds_salaries`
+GROUP BY 
+    employment_type
+ORDER BY 
+    avg_salary_usd DESC;
+
+
