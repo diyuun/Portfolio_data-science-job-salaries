@@ -1,2 +1,30 @@
 # Portfolio_data-science-job-salaries
--------------
+------------------------------------
+---------Google BigQuery-----------
+# 1 CHECKING NULL VALUES IN THE DATA
+SELECT 
+    *
+FROM
+    `company.ds_salaries`
+    WHERE 
+        work_year is NULL
+        OR experience_level is NULL
+        OR employment_type is NULL
+        OR job_title is NULL
+        OR salary is NULL
+        OR salary_currency is NULL
+        OR salary_in_usd is NULL
+        OR employee_residence is NULL
+        OR remote_ratio is NULL
+        OR company_location is NULL
+        OR company_size is NULL
+
+# 2 JOB TITLES RELATED TO DATA ANALYST
+SELECT
+    DISTINCT job_title
+FROM
+    `company.ds_salaries`
+WHERE
+    job_title LIKE '%Data Analyst%'
+ORDER BY
+    job_title
